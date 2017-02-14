@@ -12,4 +12,4 @@ run:
 	docker run -it --rm -p 5000:5000 $(NAME)
 
 dev:
-	docker run -v $(PWD)/wrapper:/app -it --rm -p 5000:5000 $(NAME)
+	docker run -v $(PWD)/server:/app -it --rm -p 5000:5000 $(NAME)
