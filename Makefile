@@ -11,5 +11,10 @@ build:
 run:
 	docker run -it --rm -p 5000:5000 $(NAME)
 
+
+push:
+	docker push $(NAME)
+
+
 dev:
 	docker run -v $(PWD)/server:/app -it --rm -p 5000:5000 $(NAME)
