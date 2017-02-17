@@ -10,14 +10,15 @@ def not_found(error):
     return jsonify(error=error.description), 404
 
 
-@app.route("/ping", methods=['GET'])
-def ping():
+@app.route("/ping/<email>", methods=['GET'])
+def ping(email):
     response = {
       "looker": {
         "success": True,
         "refresh_query": True
       }
     }
+    app.logger.info(email)
     return jsonify(response)
 
 
