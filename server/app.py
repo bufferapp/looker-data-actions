@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import jsonify
+from flask import request
 
 # Generate Flask application
 app = Flask('looker-data-action')
@@ -10,15 +11,16 @@ def not_found(error):
     return jsonify(error=error.description), 404
 
 
-@app.route("/ping/<email>", methods=['GET'])
+@app.route("/ping/<email>", methods=['POST'])
 def ping(email):
+    app.logger.info(request.get_json())
+    app.logger.info(email)
     response = {
       "looker": {
         "success": True,
         "refresh_query": True
       }
     }
-    app.logger.info(email)
     return jsonify(response)
 
 
