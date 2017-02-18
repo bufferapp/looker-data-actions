@@ -14,4 +14,4 @@ push: build
 	docker push $(IMAGE_NAME)
 
 dev:
-	docker run -v $(PWD)/server:/app -it --rm -p 5000:5000 $(IMAGE_NAME)
+	docker run -v $(PWD)/server:/app --env-file=.env -it --rm -p 5000:5000 $(IMAGE_NAME)
