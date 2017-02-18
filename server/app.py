@@ -1,9 +1,23 @@
 from flask import Flask
 from flask import jsonify
 from flask import request
+import os
+from flask_httpauth import HTTPTokenAuth
+
 
 # Generate Flask application
 app = Flask('looker-data-action')
+
+# Setup Authentication
+auth = HTTPTokenAuth(scheme='Bearer')
+token = os.getenv('TOKEN')
+
+
+@auth.verify_token
+def verify_token(t):
+    if t == token:
+        return True
+    return False
 
 
 @app.errorhandler(404)
@@ -12,6 +26,7 @@ def not_found(error):
 
 
 @app.route("/ping/<email>", methods=['POST'])
+@auth.login_required
 def ping(email):
     app.logger.info(request.get_json())
     app.logger.info(email)
@@ -25,6 +40,7 @@ def ping(email):
 
 
 @app.route('/')
+@auth.login_required
 def home():
     return jsonify(status='ok')
 
