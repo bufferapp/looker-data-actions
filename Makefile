@@ -8,7 +8,7 @@ build:
 	docker build -t $(IMAGE_NAME) .
 
 run:
-	docker run -it --rm -p 5000:5000 $(IMAGE_NAME)
+	docker run --env-file=.env -it --rm -p 5000:5000 $(IMAGE_NAME)
 
 push: build
 	docker push $(IMAGE_NAME)
