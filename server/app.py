@@ -2,6 +2,7 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 from functools import wraps
+from sendgrid_api import send_mail
 import os
 
 # Generate Flask application
@@ -17,7 +18,7 @@ def requires_auth(f):
         app.logger.info(request.get_json())
         r = request.get_json()
         request_token = r.get('data', {}).get('auth')
-        if request_token != str(token):
+        if request_token != token:
             return 'Unauthorized Access', 401
         return f(*args, **kwargs)
     return decorated
@@ -54,11 +55,13 @@ def mail(email):
     body = r.get('form_params', {}).get('body')
 
     # Send email
+    response_code = send_mail(email, subject, body)
+    success = response_code == 202
 
     response = {
       "looker": {
-        "success": True,
-        "refresh_query": True
+        "success": success,
+        "refresh_query": False
       }
     }
     return jsonify(response)
