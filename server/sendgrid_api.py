@@ -9,7 +9,7 @@ from_email = Email('davidgasquez@gmail.com')
 
 
 def send_mail(to, subject, body):
-    to_email = Email('davidgasquez@gmail.com')
+    to_email = Email(to)
     content = Content("text/plain", body)
     mail = Mail(from_email, subject, to_email, content)
     response = sg.client.mail.send.post(request_body=mail.get())
