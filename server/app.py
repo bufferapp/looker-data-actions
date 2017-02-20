@@ -4,13 +4,8 @@ from flask import request
 from functools import wraps
 import os
 
-from sendgrid import sendgrid_api
-
 # Generate Flask application
 app = Flask('looker-data-actions')
-
-# Blueprints
-app.register_blueprint(sendgrid_api)
 
 # Setup Authentication
 token = os.getenv('LOOKER_DATA_ACTIONS_TOKEN')
