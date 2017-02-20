@@ -1,23 +1,31 @@
 from flask import Flask
 from flask import jsonify
 from flask import request
+from functools import wraps
 import os
-from flask_httpauth import HTTPTokenAuth
 
+from sendgrid import sendgrid_api
 
 # Generate Flask application
-app = Flask('looker-data-action')
+app = Flask('looker-data-actions')
+
+# Blueprints
+app.register_blueprint(sendgrid_api)
 
 # Setup Authentication
-auth = HTTPTokenAuth(scheme='Bearer')
-token = os.getenv('TOKEN')
+token = os.getenv('LOOKER_DATA_ACTIONS_TOKEN')
 
 
-@auth.verify_token
-def verify_token(t):
-    if t == token:
-        return True
-    return False
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        app.logger.info(request.get_json())
+        r = request.get_json()
+        request_token = r.get('data', {}).get('auth')
+        if request_token != str(token):
+            return 'Unauthorized Access', 401
+        return f(*args, **kwargs)
+    return decorated
 
 
 @app.errorhandler(404)
@@ -25,11 +33,33 @@ def not_found(error):
     return jsonify(error=error.description), 404
 
 
-@app.route("/ping/<email>", methods=['POST'])
-@auth.login_required
-def ping(email):
-    app.logger.info(request.get_json())
-    app.logger.info(email)
+@app.route("/", methods=['GET'])
+@app.route("/ping", methods=['GET'])
+def ping():
+    return jsonify(app.name)
+
+
+@app.route("/ping", methods=['POST'])
+@requires_auth
+def looker_ping():
+    response = {
+      "looker": {
+        "success": True,
+        "refresh_query": False
+      }
+    }
+    return jsonify(response)
+
+
+@app.route("/email/<email>", methods=['POST'])
+@requires_auth
+def mail(email):
+    r = request.get_json()
+    subject = r.get('form_params', {}).get('subject')
+    body = r.get('form_params', {}).get('body')
+
+    # Send email
+
     response = {
       "looker": {
         "success": True,
@@ -37,12 +67,6 @@ def ping(email):
       }
     }
     return jsonify(response)
-
-
-@app.route('/')
-@auth.login_required
-def home():
-    return jsonify(status='ok')
 
 
 if __name__ == '__main__':
