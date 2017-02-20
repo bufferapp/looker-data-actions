@@ -41,7 +41,6 @@ dimension:
 
 ```
 dimension: user_email {
-  description: "Email of the user?"
   action: {
     label: "Send Email"
     url: "https://urlofyourserver.com/email/{{value}}"
