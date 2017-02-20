@@ -3,9 +3,12 @@ import os
 
 from sendgrid.helpers.mail import Email, Content, Mail
 
+# Grab environmental variables
 api_key = os.environ.get('SENDGRID_API_KEY')
-sg = sendgrid.SendGridAPIClient(apikey=api_key)
 from_email = os.environ.get('SENDGRID_ACCOUNT_EMAIL')
+
+# Instanciate API client
+sg = sendgrid.SendGridAPIClient(apikey=api_key)
 
 
 def send_mail(to, subject, body):
