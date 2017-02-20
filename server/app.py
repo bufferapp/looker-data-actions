@@ -15,7 +15,6 @@ token = os.getenv('LOOKER_DATA_ACTIONS_TOKEN')
 def requires_auth(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        app.logger.info(request.get_json())
         r = request.get_json()
         request_token = r.get('data', {}).get('auth')
         if request_token != token:
