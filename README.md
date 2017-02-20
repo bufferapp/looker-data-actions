@@ -15,7 +15,7 @@ To run this Looker Data Actions service you'll need to add some variables to
 your environment:
 
 - `LOOKER_DATA_ACTIONS_TOKEN`: Token to perform authentication from Looker.
-  This value will be placed in the LookML.
+  This value will be placed in the LookML
 - `SENDGRID_API_KEY`: Value for the [API key](https://app.sendgrid.com/settings/api_keys) you want to use for Sendgrid
 
 ### Running Looker Data Actions Service
