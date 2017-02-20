@@ -1,17 +1,16 @@
 # Looker Data Actions
 
-Set of Looker Data Actions to perform tasks in other tools from directly within
-Looker.
+Set of [Looker Data Actions](https://discourse.looker.com/t/data-actions/3573)
+to perform tasks in other tools from directly within Looker.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your
-local machine for development and testing purposes. See deployment for notes on
-how to deploy the project on a live system.
+local machine for development and testing purposes.
 
 ### Prerequisites
 
-To run this Looker Data Actions service you'll need to add some variables to
+To run this Looker Data Actions service you'll need Docker and this variables in
 your environment:
 
 - `LOOKER_DATA_ACTIONS_TOKEN`: Token to perform authentication from Looker.
@@ -20,12 +19,12 @@ your environment:
 
 ### Running Looker Data Actions Service
 
-If you're running Docker locally, place the environment variables under an
-`.env` file and run `make build && make`. This will create the server in
+Ensure that Docker is running locally and place the environment variables under
+an `.env` file. You can now run `make build && make` to create the server in
 port 5000.
 
-You can go ahead and test it with this snippet (_remember to replace the token
-with the one you placed in the env file_):
+Once the service is up you can test it with this snippet (_remember to replace
+the token with the one you placed in the env file_):
 
 ```bash
 curl -X POST \
