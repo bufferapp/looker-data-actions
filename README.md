@@ -3,6 +3,11 @@
 Set of [Looker Data Actions](https://discourse.looker.com/t/data-actions/3573)
 to perform tasks in other tools from directly within Looker.
 
+#### What are Data Actions?
+Data Actions allow users to perform tasks in other tools from directly within
+Looker using API calls. The action is set up in LookML on a particular field
+and can trigger an API call.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your
