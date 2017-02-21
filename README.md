@@ -19,7 +19,9 @@ To run this Looker Data Actions service you'll need Docker and this variables in
 your environment:
 
 - `LOOKER_DATA_ACTIONS_TOKEN`: Token to perform authentication from Looker.
-  This value will be placed in the LookML
+  This value will be placed in the LookML, `curl` requests or anything that
+  queries the `POST` requests of the service. Use a strong, [randomly generated
+  key](http://randomkeygen.com/) to improve the security.
 - `SENDGRID_API_KEY`: Value for the [API key](https://app.sendgrid.com/settings/api_keys) you want to use for Sendgrid
 - `SENDGRID_ACCOUNT_EMAIL`: Email that will send the emails in the action
 
