@@ -22,7 +22,7 @@ your environment:
   This value will be placed in the LookML
 - `SENDGRID_API_KEY`: Value for the [API key](https://app.sendgrid.com/settings/api_keys) you want to use for Sendgrid
 
-### Running Looker Data Actions Service
+### Running Looker Data Actions Service Locally
 
 Ensure that Docker is running locally and place the environment variables under
 an `.env` file. You can now run `make build && make` to create the server in
@@ -66,6 +66,11 @@ dimension: user_email {
   sql: ${TABLE}.email ;;
 }
 ```
+
+### Exposing the service
+
+The easiest way to expose Looker Data Actions and start using them in Looker is
+using `localtunnel` as described in the [Flask documentation](http://flask.pocoo.org/snippets/89/).
 
 ## License
 
