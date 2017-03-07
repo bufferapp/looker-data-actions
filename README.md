@@ -22,14 +22,16 @@ your environment:
   This value will be placed in the LookML, `curl` requests or anything that
   queries the `POST` requests of the service. Use a strong, [randomly generated
   key](http://randomkeygen.com/) to improve the security.
-- `SENDGRID_API_KEY`: Value for the [API key](https://app.sendgrid.com/settings/api_keys) you want to use for Sendgrid
+- `SENDGRID_API_KEY`: Value for the [API
+  key](https://app.sendgrid.com/settings/api_keys) you want to use for Sendgrid
 - `SENDGRID_ACCOUNT_EMAIL`: Email that will send the emails in the action
 
 ### Running Looker Data Actions Service Locally
 
 Ensure that Docker is running locally and place the environment variables under
-an `.env` file. You can now run `make build && make` to create the server in
-port 5000.
+an `.env` file. You can now run
+`docker run --env-file=.env -it --rm -p 5000:5000 bufferapp/looker-data-actions:beta` or `make` if you have cloned the repository
+to create the server in port 5000.
 
 Once the service is up you can test it with this snippet (_remember to replace
 the token with the one you placed in the env file_):
