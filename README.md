@@ -52,7 +52,7 @@ dimension:
 dimension: user_email {
   action: {
     label: "Send Email"
-    url: "https://urlofyourserver.com/email/{{value}}"
+    url: "https://urlofyourserver.com/sendgrid/email/{{value}}"
     param: {
       name: "auth"
       value: "LOOKER_DATA_ACTIONS_TOKEN"
