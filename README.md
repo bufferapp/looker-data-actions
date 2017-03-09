@@ -4,6 +4,7 @@ Set of [Looker Data Actions](https://discourse.looker.com/t/data-actions/3573)
 to perform tasks in other tools from directly within Looker.
 
 #### What are Data Actions?
+
 Data Actions allow users to perform tasks in other tools from directly within
 Looker using API calls. The action is set up in LookML on a particular field
 and can trigger an API call.
@@ -15,16 +16,16 @@ local machine for development and testing purposes.
 
 ### Prerequisites
 
-To run this Looker Data Actions service you'll need Docker and this variables in
-your environment:
+To run this **Looker Data Actions** service you'll to provide this variables in
+the environment:
 
 - `LOOKER_DATA_ACTIONS_TOKEN`: Token to perform authentication from Looker.
-  This value will be placed in the LookML, `curl` requests or anything that
-  queries the `POST` requests of the service. Use a strong, [randomly generated
-  key](http://randomkeygen.com/) to improve the security.
+  This value will be placed in the LookML and `curl` requests. Use a
+  strong, [randomly generated key](http://randomkeygen.com/) to improve the
+  service security.
 - `SENDGRID_API_KEY`: Value for the [API
-  key](https://app.sendgrid.com/settings/api_keys) you want to use for Sendgrid
-- `SENDGRID_ACCOUNT_EMAIL`: Email that will send the emails in the action
+  key](https://app.sendgrid.com/settings/api_keys) you want to use for Sendgrid.
+- `SENDGRID_ACCOUNT_EMAIL`: Email that will send the emails.
 
 ### Running Looker Data Actions Service Locally
 
