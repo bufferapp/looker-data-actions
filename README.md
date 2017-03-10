@@ -39,9 +39,9 @@ the token with the one you placed in the env file_):
 
 ```bash
 curl -X POST \
-    -d '{"data": {"auth": "LOOKER_DATA_ACTIONS_TOKEN"}}' \
+    -d '{"data": {"auth": "REPLACE_THIS_WITH_LOOKER_DATA_ACTIONS_TOKEN"}}' \
     -H "Content-type: application/json" \
-    http://0.0.0.0:5000/ping
+    http://localhost:5000/ping
 ```
 
 #### Email
@@ -56,7 +56,7 @@ dimension: user_email {
     url: "https://urlofyourserver.com/sendgrid/email/{{value}}"
     param: {
       name: "auth"
-      value: "LOOKER_DATA_ACTIONS_TOKEN"
+      value: "REPLACE_THIS_WITH_LOOKER_DATA_ACTIONS_TOKEN"
     }
     form_param: {
       name: "subject"
